@@ -10,6 +10,7 @@ namespace LabooGF.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "Testes";
             return View();
         }
 
