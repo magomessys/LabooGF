@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LabooGF.Models;
@@ -14,12 +17,22 @@ namespace LabooGF.Controllers
         // GET: Aluno
         public ActionResult Index()
         {
-            return View(db.Alunos.ToList());
+            var alunos = db.Alunos
+                        .Include(a => a.Responsavel);
+
+            return View(alunos.ToList());
         }
 
         // GET: Aluno/Details/5
         public ActionResult Details(int id)
         {
+            var aluno = db.Alunos
+                        .Include(a => a.Responsavel)
+                        .Where(a => a.IdAluno == id).FirstOrDefault();
+
+            if (aluno == null)
+                return HttpNotFound();
+
             return View();
         }
 
