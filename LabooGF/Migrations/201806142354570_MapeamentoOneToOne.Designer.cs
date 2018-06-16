@@ -7,13 +7,13 @@ namespace LabooGF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AlteradoDisplayNameAluno : IMigrationMetadata
+    public sealed partial class MapeamentoOneToOne : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AlteradoDisplayNameAluno));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MapeamentoOneToOne));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806120235216_AlteradoDisplayNameAluno"; }
+            get { return "201806142354570_MapeamentoOneToOne"; }
         }
         
         string IMigrationMetadata.Source

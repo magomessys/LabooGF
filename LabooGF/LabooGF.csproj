@@ -166,21 +166,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806091646408_Inicial.cs" />
-    <Compile Include="Migrations\201806091646408_Inicial.Designer.cs">
-      <DependentUpon>201806091646408_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806120122576_incialRequired.cs" />
-    <Compile Include="Migrations\201806120122576_incialRequired.Designer.cs">
-      <DependentUpon>201806120122576_incialRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806120233262_Inicial1.cs" />
-    <Compile Include="Migrations\201806120233262_Inicial1.Designer.cs">
-      <DependentUpon>201806120233262_Inicial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806120235216_AlteradoDisplayNameAluno.cs" />
-    <Compile Include="Migrations\201806120235216_AlteradoDisplayNameAluno.Designer.cs">
-      <DependentUpon>201806120235216_AlteradoDisplayNameAluno.cs</DependentUpon>
+    <Compile Include="Migrations\201806142354570_MapeamentoOneToOne.cs" />
+    <Compile Include="Migrations\201806142354570_MapeamentoOneToOne.Designer.cs">
+      <DependentUpon>201806142354570_MapeamentoOneToOne.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -506,17 +494,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806091646408_Inicial.resx">
-      <DependentUpon>201806091646408_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806120122576_incialRequired.resx">
-      <DependentUpon>201806120122576_incialRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806120233262_Inicial1.resx">
-      <DependentUpon>201806120233262_Inicial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806120235216_AlteradoDisplayNameAluno.resx">
-      <DependentUpon>201806120235216_AlteradoDisplayNameAluno.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806142354570_MapeamentoOneToOne.resx">
+      <DependentUpon>201806142354570_MapeamentoOneToOne.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
