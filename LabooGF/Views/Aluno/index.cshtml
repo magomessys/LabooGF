@@ -19,7 +19,7 @@
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Nome )</th>
                             <th>@Html.DisplayNameFor(model => model.DtNascimento)</th>
-                            <th>@Html.DisplayNameFor(model => model.Responsavel)</th>
+                            <th>@Html.DisplayNameFor(model => model.Responsavel.Nome)</th>
                         </tr>
                     @foreach (var item in Model)
                     {
@@ -35,7 +35,7 @@
                     </table>
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer clearfix">
+                @*<div class="box-footer clearfix">
                     <ul class="pagination pagination-sm no-margin pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>
@@ -43,7 +43,7 @@
                         <li><a href="#">3</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

@@ -475,10 +475,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Aluno\Index.cshtml" />
+    <Content Include="Views\Responsavel\Index.cshtml" />
+    <Content Include="Views\Responsavel\Edit.cshtml" />
+    <Content Include="Views\Responsavel\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Responsavel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

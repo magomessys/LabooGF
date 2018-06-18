@@ -14,15 +14,19 @@ namespace LabooGF.Models
 
         [Required(ErrorMessage = "O campo nome é obrigatório.")]
         [StringLength(200)]
+        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         [StringLength(200)]
+        [Display(Name = "Endereço")]
         public string Endereço { get; set; }
 
         [StringLength(200)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [StringLength(20)]
+        [Display(Name = "Telefone")]
         public string Telefone { get; set; }
         
         public virtual ICollection<Aluno> Alunos { get; set; }

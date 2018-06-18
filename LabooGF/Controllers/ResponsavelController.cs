@@ -1,6 +1,9 @@
-﻿using System;
+﻿using LabooGF.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,16 +11,28 @@ namespace LabooGF.Controllers
 {
     public class ResponsavelController : Controller
     {
+        private GFContext db = new GFContext();
+
         // GET: Responsavel
         public ActionResult Index()
         {
-            return View();
+            var resp = db.Responsaveis.OrderBy(r => r.Nome);
+
+            return View(resp);
         }
 
         // GET: Responsavel/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var responsavel = db.Responsaveis.Find(id);
+
+            if (responsavel == null)
+                return HttpNotFound();
+
+            return View(responsavel);
         }
 
         // GET: Responsavel/Create
@@ -28,13 +43,14 @@ namespace LabooGF.Controllers
 
         // POST: Responsavel/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "IdResponsavel, Nome, Endereço, Email, Telefone")] Responsavel responsavel)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                    db.Responsaveis.Add(responsavel);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
             }
             catch
             {
@@ -43,20 +59,35 @@ namespace LabooGF.Controllers
         }
 
         // GET: Responsavel/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var responsavel = db.Responsaveis.Find(id);
+
+            if (responsavel == null)
+                return HttpNotFound();
+
+            return View(responsavel);
         }
 
         // POST: Responsavel/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "IdResponsavel, Nome, Endereço, Email, Telefone")] Responsavel responsavel)
         {
             try
             {
                 // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    db.Entry(responsavel).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
+                return View(responsavel);
             }
             catch
             {
@@ -67,23 +98,28 @@ namespace LabooGF.Controllers
         // GET: Responsavel/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var resp = db.Responsaveis.Find(id);
+            db.Responsaveis.Remove(resp);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Responsavel/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //public ActionResult Delete(int id)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
+        //        var resp = db.Responsaveis.Find(id);
+        //        db.Responsaveis.Remove(resp);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }
