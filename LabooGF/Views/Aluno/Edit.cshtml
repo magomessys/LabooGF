@@ -1,0 +1,67 @@
+﻿@model LabooGF.Models.Aluno
+@{
+    ViewBag.Bread1 = "Aluno";
+}
+
+<section class="content">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+                @using (Html.BeginForm("Editar", "Aluno", FormMethod.Post, new { @class = "form-horizontal", id = "formResponsavel" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IdAluno)
+
+                    <div class="box-body">
+                        @* Nome Completo *@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome completo", maxlength = "200", type = "text" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @* Responsável *@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdResponsavel, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(model => model.IdResponsavel, (SelectList)ViewBag.Responsaveis,"(Selecione uma opção abaixo)", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        @* Data Nascimento *@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DtNascimento, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    @Html.EditorFor(model => model.DtNascimento, new { htmlAttributes = new { @class = "form-control, datemask", type = "text" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        @Html.ActionLink("Cancelar", "Index", "Aluno", htmlAttributes: new { @class = "btn btn-default" })
+                        <button type="submit" class="btn btn-info pull-right">Salvar</button>
+                    </div>
+                    <!-- /.box-footer -->
+                }
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>
+

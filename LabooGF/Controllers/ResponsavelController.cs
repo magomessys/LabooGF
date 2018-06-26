@@ -13,89 +13,62 @@ namespace LabooGF.Controllers
     {
         private GFContext db = new GFContext();
 
-        // GET: Responsavel
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                ViewBag.Title = "Novo Responsável";
+                ViewBag.Bread2 = "Novo";
+                return View("Edit");
+            }
+            else
+            {
+                var resp = db.Responsaveis.Find(id);
+
+                if (resp == null)
+                    return HttpNotFound();
+
+                ViewBag.Title = "Editar Responsável";
+                ViewBag.Bread2 = "Editar";
+                return View("Edit", resp);
+            }
+        }
+
+        //POST: Responsavel/Edit/?5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Responsavel resp)
+        {
+            // Guarda o Id que entrou para saber se é edição ou inclusão
+            var id = resp.IdResponsavel;
+
+            if (resp.IdResponsavel != 0)
+                db.Entry(resp).State = EntityState.Modified;
+            else
+                db.Responsaveis.Add(resp);
+            db.SaveChanges();
+        
+            var msg = id == 0 ? "Responsável incluido com sucesso!" : "Responsável alterado com sucesso!";
+
+            return RedirectToAction("Sucesso",new { msg });
+        }
+
         public ActionResult Index()
         {
-            var resp = db.Responsaveis.OrderBy(r => r.Nome);
+            var resps = db.Responsaveis.OrderBy(r => r.Nome);
 
-            return View(resp);
-        }
-
-        // GET: Responsavel/Details/5
-        public ActionResult Details(int? id)
+            return View(resps);
+        }        
+        
+        public ActionResult Sucesso(string msg)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var resps = db.Responsaveis.OrderBy(r => r.Nome);
 
-            var responsavel = db.Responsaveis.Find(id);
+            @ViewBag.Sucesso = msg;
 
-            if (responsavel == null)
-                return HttpNotFound();
-
-            return View(responsavel);
+            return View("Index",resps);
         }
 
-        // GET: Responsavel/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Responsavel/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdResponsavel, Nome, Endereço, Email, Telefone")] Responsavel responsavel)
-        {
-            try
-            {
-                    db.Responsaveis.Add(responsavel);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Responsavel/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var responsavel = db.Responsaveis.Find(id);
-
-            if (responsavel == null)
-                return HttpNotFound();
-
-            return View(responsavel);
-        }
-
-        // POST: Responsavel/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdResponsavel, Nome, Endereço, Email, Telefone")] Responsavel responsavel)
-        {
-            try
-            {
-                // TODO: Add update logic here
-                if (ModelState.IsValid)
-                {
-                    db.Entry(responsavel).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-                return View(responsavel);
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Responsavel/Delete/5
         public ActionResult Delete(int id)
         {
             var resp = db.Responsaveis.Find(id);
@@ -103,23 +76,5 @@ namespace LabooGF.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        // POST: Responsavel/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-        //        var resp = db.Responsaveis.Find(id);
-        //        db.Responsaveis.Remove(resp);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

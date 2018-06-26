@@ -14,91 +14,84 @@ namespace LabooGF.Controllers
     {
         private GFContext db = new GFContext();
 
-        // GET: Aluno
+        //GET: Responsavel/
         public ActionResult Index()
         {
             var alunos = db.Alunos
-                        .Include(a => a.Responsavel);
+                        .Include(a => a.Responsavel)
+                        .OrderBy(a => a.Nome);
 
             return View(alunos.ToList());
         }
 
-        // GET: Aluno/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detail(int? id)
         {
-            var aluno = db.Alunos
-                        .Include(a => a.Responsavel)
-                        .Where(a => a.IdAluno == id).FirstOrDefault();
+            ViewBag.Responsaveis = new SelectList(db.Responsaveis, "IdResponsavel", "Nome");
 
-            if (aluno == null)
-                return HttpNotFound();
+            //INCLUSÃO
+            if (id == null)
+            {
+                ViewBag.Title = "Novo Aluno";
+                ViewBag.Bread2 = "Novo";
+                return View("Edit");
+            }
+            //EDIÇÃO
+            else
+            {   
+                var aluno = db.Alunos.Find(id);
 
-            return View();
+                //Se não encontrou o aluno.
+                if (aluno == null)
+                    return HttpNotFound();
+
+                ViewBag.Title = "Editar Aluno";
+                ViewBag.Bread2 = "Editar";
+                return View("Edit", aluno);
+            }
         }
 
-        // GET: Aluno/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Aluno/Create
+        //POST: Responsavel/Edit/?5
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Aluno aluno)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            // Guarda o Id que entrou para saber se é edição ou inclusão
+            var id = aluno.IdAluno;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            if (aluno.IdAluno != 0)
+                db.Entry(aluno).State = EntityState.Modified; //Indica Alteração
+            else
+                db.Alunos.Add(aluno);
+
+            db.SaveChanges();
+
+            //Monta msg de inclusão/alteração.
+            var msg = id == 0 ? "Aluno incluido com sucesso!" : "Aluno alterado com sucesso!";
+
+            return RedirectToAction("Sucesso", new { msg });
         }
 
-        // GET: Aluno/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Sucesso(string msg)
         {
-            return View();
+            var alunos = db.Alunos
+            .Include(a => a.Responsavel)
+            .OrderBy(a => a.Nome);
+
+            @ViewBag.Sucesso = msg;
+
+            return View("Index", alunos);
         }
 
-        // POST: Aluno/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Aluno/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var aluno = db.Alunos.Find(id);
+
+            db.Alunos.Remove(aluno);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
-        // POST: Aluno/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+
     }
 }

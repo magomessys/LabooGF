@@ -12,25 +12,21 @@ namespace LabooGF.Models
         [Key]
         public int IdAluno { get; set; }
 
-        [Display(Name = "Nome")]
-        [StringLength(200)]
-        [Required(ErrorMessage = "O campo nome é obrigatório.")]
+        [MaxLength(200, ErrorMessage = "O nome deve ter até {1} caracteres.")]
+        [Required(ErrorMessage = "Preencha o nome completo.")]
         public string Nome { get; set; }
 
 
-        [Display(Name = "Data de Nascimento") ]
+        [Display(Name = "Data de Nascimento")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "O campo Data de Nascimento é obrigatório.")]
+        [Required(ErrorMessage = "Preencha a data de nascimento.")]
         public DateTime DtNascimento { get; set; }
 
         [Display(Name = "Responsável")]
         [ForeignKey("Responsavel")]
-        [Required(ErrorMessage = "O campo responsável é obrigatório.")] 
+        [Required(ErrorMessage = "Preencha o Responsável.")] 
         public int IdResponsavel { get; set; }
-
-
+        
         public virtual Responsavel Responsavel { get; set; }
-
     }
-
 }

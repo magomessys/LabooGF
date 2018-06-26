@@ -1,31 +1,142 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<!-- Main content -->
+<section class="content">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- The time line -->
+            <ul class="timeline">
+                <!-- timeline time label -->
+                <li class="time-label">
+                    <span class="bg-blue">
+                        19 Jun. 2018
+                    </span>
+                </li>
+                <!-- /.timeline-label -->
+                <!-- timeline item -->
+                <li>
+                    <i class="fa fa-bullhorn bg-blue"></i>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> 08:47</span>
+
+                        <h3 class="timeline-header">Lição deste domingo</h3>
+
+                        <div class="timeline-body">
+
+                            <img width="300" height="300" src="https://scontent.fcxj5-1.fna.fbcdn.net/v/t1.0-9/35545734_930016160510607_867266850407317504_n.jpg?_nc_cat=0&oh=3b5493974e72cec44003dfdcb624fed0&oe=5BA2B274" alt="..." class="margin">
+                        </div>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline time label -->
+                <li class="time-label">
+                    <span class="bg-blue">
+                        12 Jun. 2018
+                    </span>
+                </li>
+                <!-- /.timeline-label -->
+                <!-- timeline item -->
+                <li>
+                    <i class="fa fa-bullhorn bg-blue"></i>
+
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> 10:30</span>
+
+                        <h3 class="timeline-header">Lição deste domingo</h3>
+
+                        <div class="timeline-body">
+
+                            <img width="300" height="300" src="https://scontent.fcxj5-1.fna.fbcdn.net/v/t1.0-9/35066210_924183854427171_7433025510906527744_n.jpg?_nc_cat=0&oh=737edf1bc6fd4e9073e1cfedae8bd05c&oe=5BA51E6C" alt="..." class="margin">
+                        </div>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline item -->
+                <li>
+                    <i class="fa fa-user bg-aqua"></i>
+
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                        <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline item -->
+                <li>
+                    <i class="fa fa-comments bg-yellow"></i>
+
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                        <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                        <div class="timeline-body">
+                            Take me to your leader!
+                            Switzerland is small and neutral!
+                            We are more like Germany, ambitious and misunderstood!
+                        </div>
+                        <div class="timeline-footer">
+                            <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                        </div>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline time label -->
+                <li class="time-label">
+                    <span class="bg-green">
+                        3 Jan. 2014
+                    </span>
+                </li>
+                <!-- /.timeline-label -->
+                <!-- timeline item -->
+                <li>
+                    <i class="fa fa-camera bg-purple"></i>
+
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                        <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                        <div class="timeline-body">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        </div>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline item -->
+                <li>
+                    <i class="fa fa-video-camera bg-maroon"></i>
+
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> 5 days ago</span>
+
+                        <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
+
+                        <div class="timeline-body">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs"
+                                        frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="timeline-footer">
+                            <a href="#" class="btn btn-xs bg-maroon">See comments</a>
+                        </div>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+            </ul>
+        </div>
+        <!-- /.col -->
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <!-- /.row -->

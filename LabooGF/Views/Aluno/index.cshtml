@@ -1,9 +1,8 @@
-﻿@model IEnumerable<LabooGF.Models.Aluno>
+﻿    @model IEnumerable<LabooGF.Models.Aluno>
 @{
     ViewBag.Title = "Alunos";
-    ViewBag.Bread1 = "Cadastros";
-    ViewBag.Bread2 = "Aluno";
-    ViewBag.Bread3 = "Consultar";
+    ViewBag.Bread1 = "Aluno";
+    ViewBag.Bread2 = "Consultar";
 }
 
 <section class="content">
@@ -11,24 +10,33 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Alunos</h3>
+                    <div class="col-md-10">
+                        <h3 class="box-title">Alunos</h3>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.ActionLink("Criar Novo","Detail","Aluno",htmlAttributes: new { @class = "btn btn-block btn-primary" })
+                    </div>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
-                    <table class="table table-bordered">
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Nome )</th>
                             <th>@Html.DisplayNameFor(model => model.DtNascimento)</th>
                             <th>@Html.DisplayNameFor(model => model.Responsavel.Nome)</th>
+                            <th></th>                                
                         </tr>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.ActionLink(@Html.DisplayFor(modelItem => item.Nome).ToString(), "Edit", new { id = item.IdAluno })</td>
+                            <td>@Html.ActionLink(@Html.DisplayFor(modelItem => item.Nome).ToString(), "Detail", new { id = item.IdAluno })</td>
                             <td>@Html.DisplayFor(modelItem => item.DtNascimento)</td>
                             <td>@Html.DisplayFor(modelItem => item.Responsavel.Nome)</td>
                             <td>
-                                @Html.ActionLink("Delete", "Delete", new { id = item.IdAluno })
+                                <a id="delete" href="@Url.Action("Delete", "Aluno",new { id = item.IdAluno })" onclick="return confirm('Tem certeza que deseja deletar esse registro?');">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    <span>Excluir</span>
+                                </a>
                             </td>
                         </tr>
                     } 

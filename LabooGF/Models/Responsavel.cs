@@ -12,14 +12,14 @@ namespace LabooGF.Models
         [Key]
         public int IdResponsavel { get; set; }
 
-        [Required(ErrorMessage = "O campo nome é obrigatório.")]
-        [StringLength(200)]
+        [Required(ErrorMessage = "Preencha o nome completo.")]
+        [MaxLength(200, ErrorMessage = "O nome deve ter até {1} caracteres.")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
-        [StringLength(200)]
+        [MaxLength(200, ErrorMessage = "O endereço deve ter até {1} caracteres.")]
         [Display(Name = "Endereço")]
-        public string Endereço { get; set; }
+        public string Endereco { get; set; }
 
         [StringLength(200)]
         [Display(Name = "Email")]
