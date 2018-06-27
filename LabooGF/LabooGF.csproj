@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AlunoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResponsavelController.cs" />
+    <Compile Include="Controllers\VoluntarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,10 +175,16 @@
     <Compile Include="Migrations\201806230001228_AlterDataAnnotations.Designer.cs">
       <DependentUpon>201806230001228_AlterDataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806261112298_addEntityVoluntario.cs" />
+    <Compile Include="Migrations\201806261112298_addEntityVoluntario.Designer.cs">
+      <DependentUpon>201806261112298_addEntityVoluntario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
+    <Compile Include="Models\FbPost.cs" />
     <Compile Include="Models\GFContext.cs" />
     <Compile Include="Models\Responsavel.cs" />
+    <Compile Include="Models\Voluntario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1989,9 +1996,12 @@
     <Content Include="Template\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Template\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Views\Home\Index - Cópia .cshtml" />
+    <Content Include="Views\Voluntario\Edit.cshtml" />
+    <Content Include="Views\Voluntario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -2012,6 +2022,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806230001228_AlterDataAnnotations.resx">
       <DependentUpon>201806230001228_AlterDataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261112298_addEntityVoluntario.resx">
+      <DependentUpon>201806261112298_addEntityVoluntario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -30,6 +30,25 @@
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
+    <!-- ADD SDK FACEBOOK JS -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: 'your-app-id',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v3.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     @*<script type="text/javascript">
             function Splash() {
                 var splash = window.pleaseWait({
@@ -65,7 +84,8 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Responsavel" ? "active" : "")"> @Html.ActionLink("Responsável", "Index", "Responsavel")</li>
-                            <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Aluno" ? "active" : "")"> @Html.ActionLink("Aluno", "Index", "Aluno")</li>
+                            <li class="@(ViewContext.RouteData.Values["Controller"].ToString() =="Aluno" ? "active" : "" )"> @Html.ActionLink("Aluno", "Index", "Aluno")</li>
+                            <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Voluntario" ? "active" : "")"> @Html.ActionLink("Voluntário", "Index", "Voluntario")</li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

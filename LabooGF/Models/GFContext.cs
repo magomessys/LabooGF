@@ -23,6 +23,12 @@ namespace LabooGF.Models
             set;
         }
 
+        public DbSet<Voluntario> Voluntarios
+        {
+            get;
+            set;
+        }
+
         //Referência para o nome da string de conexão
         public GFContext() : base("gf") { }
 
