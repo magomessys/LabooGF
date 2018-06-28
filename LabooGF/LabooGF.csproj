@@ -161,6 +161,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResponsavelController.cs" />
     <Compile Include="Controllers\VoluntarioController.cs" />
@@ -179,9 +180,15 @@
     <Compile Include="Migrations\201806261112298_addEntityVoluntario.Designer.cs">
       <DependentUpon>201806261112298_addEntityVoluntario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806280120148_encontrosCalendario.cs" />
+    <Compile Include="Migrations\201806280120148_encontrosCalendario.Designer.cs">
+      <DependentUpon>201806280120148_encontrosCalendario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
-    <Compile Include="Models\FbPost.cs" />
+    <Compile Include="Models\EncontroParticipante.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Encontro.cs" />
     <Compile Include="Models\GFContext.cs" />
     <Compile Include="Models\Responsavel.cs" />
     <Compile Include="Models\Voluntario.cs" />
@@ -1998,6 +2005,7 @@
     <Content Include="Views\Home\Index - Cópia .cshtml" />
     <Content Include="Views\Voluntario\Edit.cshtml" />
     <Content Include="Views\Voluntario\Index.cshtml" />
+    <Content Include="Views\Calendario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2025,6 +2033,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806261112298_addEntityVoluntario.resx">
       <DependentUpon>201806261112298_addEntityVoluntario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280120148_encontrosCalendario.resx">
+      <DependentUpon>201806280120148_encontrosCalendario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -4,16 +4,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="~/Template/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="~/Template/bower_components/font-awesome/css/font-awesome.min.css">
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="~/Template/bower_components/Ionicons/css/ionicons.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Template/dist/css/AdminLTE.min.css">
+
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/Template/dist/css/skins/_all-skins.min.css">
@@ -26,6 +32,14 @@
     <![endif]-->
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- qTip -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+
+    <!-- Full Calendar -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -194,29 +208,38 @@
     <script src="~/Template/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="~/Template/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('input[type="radio"]')
-                .iCheck({
-                    checkboxClass: 'icheckbox_flat-blue',
-                    radioClass: 'iradio_flat-blue',
-                    increaseArea: '20%' // optional
-                });
+    <!-- Include moment-->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+    <!-- qTip -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('input[type="radio"]')
+                    .iCheck({
+                        checkboxClass: 'icheckbox_flat-blue',
+                        radioClass: 'iradio_flat-blue',
+                        increaseArea: '20%' // optional
+                    });
 
             $('input[type="checkbox"]:not(.bootstrap-switch)')
-                .iCheck({
-                    checkboxClass: 'icheckbox_flat-blue',
-                    radioClass: 'iradio_flat-blue',
-                    increaseArea: '20%' // optional
-                });
-        })
+                    .iCheck({
+                checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue',
+            increaseArea: '20%' // optional
+        });
+})
     </script>
     @RenderSection("scripts", required: false)
     @{
         if (@ViewBag.Sucesso != null)
         {
             <script>
-                $("#modalSucesso").modal();
+                    $("#modalSucesso").modal();
             </script>
             ViewBag.Sucesso = null;
         }
@@ -224,7 +247,7 @@
         if (ViewBag.Erro != null)
         {
             <script>
-                $("#modalErro").modal();
+                    $("#modalErro").modal();
             </script>
             ViewBag.Erro = null;
         }
@@ -232,7 +255,7 @@
         if (ViewBag.Info != null)
         {
             <script>
-                $("#modalInfo").modal();
+                    $("#modalInfo").modal();
             </script>
             ViewBag.Info = null;
         }
@@ -240,7 +263,7 @@
         if (ViewBag.Alerta != null)
         {
             <script>
-                $("#modalAlerta").modal();
+                    $("#modalAlerta").modal();
             </script>
             ViewBag.Alerta = null;
         }

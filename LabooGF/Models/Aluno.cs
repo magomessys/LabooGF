@@ -24,7 +24,7 @@ namespace LabooGF.Models
 
         [Display(Name = "Responsável")]
         [ForeignKey("Responsavel")]
-        [Required(ErrorMessage = "Preencha o Responsável.")] 
+        [Required(ErrorMessage = "Informe o Responsável.")] 
         public int IdResponsavel { get; set; }
         
         public virtual Responsavel Responsavel { get; set; }
