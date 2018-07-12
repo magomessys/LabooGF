@@ -36,9 +36,8 @@
     <!-- qTip -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
 
-    <!-- Full Calendar -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+    <link rel="stylesheet" href="~/Template/bower_components/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="~/Template/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
 
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
@@ -208,32 +207,6 @@
     <script src="~/Template/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="~/Template/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
-    <!-- Include moment-->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-
-    <!-- qTip -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
-
-    <!-- Full Calendar -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
-
-        <script>
-            $(document).ready(function () {
-                $('input[type="radio"]')
-                    .iCheck({
-                        checkboxClass: 'icheckbox_flat-blue',
-                        radioClass: 'iradio_flat-blue',
-                        increaseArea: '20%' // optional
-                    });
-
-            $('input[type="checkbox"]:not(.bootstrap-switch)')
-                    .iCheck({
-                checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue',
-            increaseArea: '20%' // optional
-        });
-})
-    </script>
     @RenderSection("scripts", required: false)
     @{
         if (@ViewBag.Sucesso != null)

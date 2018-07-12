@@ -12,6 +12,18 @@ namespace LabooGF.Controllers
     {
         private GFContext db = new GFContext();
 
+        public JsonResult GetVoluntarios()
+        {
+            var reps = db.Voluntarios
+                .Select(x => new ComboDTO { id = x.IdVoluntario.ToString(), value = x.Nome });
+
+            var teste = new JsonResult { Data = reps, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+            return teste;
+        }
+
+
+
         public ActionResult Detail(int? id)
         {
             if (id == null)

@@ -11,8 +11,6 @@ namespace LabooGF.Models
     {
         [Key]
         public int IdEncontro { get; set; }
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
         
         [RegularExpression("(ROSA|LILAS|VERMELHO|AZUL|VERDE-LIMAO|VERDE-FLORESTA|LARANJA|AMARELO)", ErrorMessage = "Informe uma turma válida.")]
         [Required(ErrorMessage = "Informe a turma.")]
@@ -36,7 +34,7 @@ namespace LabooGF.Models
         [Required(ErrorMessage = "Preencha a data/hora do encontro.")]
         public DateTime DtEncontro { get; set; } //Salvar Data e Hora do encontro.
 
-        public DateTime? DtEncontroFim { get; set; }
+        public DateTime DtEncontroFim { get; set; }
 
         public virtual Voluntario Professor { get; set; }
 
@@ -45,6 +43,17 @@ namespace LabooGF.Models
         public virtual Voluntario Auxiliar2 { get; set; }
 
         public virtual ICollection<EncontroParticipante> Participantes { get; set; }
+
+        [NotMapped]
+        public string NoTurma =>
+            Turma == CdTurma.Rosa           ? "Rosa" :
+            Turma == CdTurma.Lilas          ? "Lilás" :
+            Turma == CdTurma.Vermelho       ? "Vermelho" :
+            Turma == CdTurma.Azul           ? "Azul" :
+            Turma == CdTurma.VerdeLimao     ? "Verde Limão" :
+            Turma == CdTurma.VerdeFloresta  ? "Verde Floresta" :
+            Turma == CdTurma.Laranja        ? "Laranja" :
+            Turma == CdTurma.Amarelo        ? "Amarelo" : "";
 
     }
 }

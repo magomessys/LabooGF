@@ -15,5 +15,9 @@ namespace LabooGF.Models
         public const string VerdeFloresta = "VERDE-FLORESTA";
         public const string Laranja = "LARANJA";
         public const string Amarelo = "AMARELO";
-    }    
+    }
+
+
+
+
 }

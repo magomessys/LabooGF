@@ -2,8 +2,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<div id="calender"></div>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body no-padding">
+                    <!-- THE CALENDAR -->
+                    <div id="calender"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -13,10 +25,109 @@
                 <h4 class="modal-title"><span id="eventTitle"></span></h4>
             </div>
             <div class="modal-body">
-                <p id="pDetails"></p>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Data</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input id="dataini" type="text" class="form-control datemask input-sm" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Horario</label>
+                        <input id="horario" type="text" class="form-control input-sm" disabled>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label>Professor</label>
+                    <input id="professor" type="text" class="form-control input-sm" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Auxiliar</label>
+                    <input id="auxiliar" type="text" class="form-control input-sm" disabled>
+                </div>
+                <div class="form-group">
+                    <label>2º Auxiliar</label>
+                    <input id="auxiliar2" type="text" class="form-control input-sm" disabled>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                    <span class="glyphicon glyphicon-trash"></span> Excluir
+                </button>
+                <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
+                    <span class="glyphicon glyphicon-pencil"></span> Editar
+                </button>
+                <button type="button" class="btn btn-default btn-sm pull-right" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span> Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModalSave" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="eventSaveTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="idEncontro" value="0" />
+                    <div class="form-group">
+                        <label>Auxiliar</label>
+                        <select id="sel-horarioSave" class="form-control select2">
+                            <option value="10">10:00</option>
+                            <option value="18">18:00</option>
+                            <option value="20">20:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Professor</label>
+                        <select id="sel-professor" class="form-control select2"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Auxiliar</label>
+                        <select id="sel-auxiliar" class="form-control select2"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>2º Auxiliar</label>
+                        <select id="sel-auxiliar2" class="form-control select2"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Data Inicio</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input id="datainiSave" type="text" class="form-control input-sm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Data Final</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input id="datafimSave" type="text" class="form-control input-sm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>teste Final</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control input-sm" id="reservationtime">
+                        </div>
+                    </div>
+                    <button type="button" id="btnSave" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </form>
             </div>
         </div>
     </div>
@@ -28,34 +139,73 @@
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/locale/pt-br.js"></script>
+    <script src="../Template/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <script>
         $(document).ready(function () {
-            var events = [];
-            $.ajax({
-                type: "GET",
-                url: "/calendario/GetEvents",
-                success: function (data) {
-                    $.each(data, function (i, v) {
-                        events.push({
-                            title: v.Titulo,
-                            description: v.Descricao,
-                            start: moment(v.DtEncontro),
-                            end: v.DtEncontroFim != null ? moment(v.DtEncontroFim) : null
-                        });
-                    })
 
-                    GenerateCalender(events);
+            $.ajax({
+                url: '/Voluntario/GetVoluntarios',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $('#sel-professor , #sel-auxiliar, #sel-auxiliar2').html('');
+                        var options = '';
+                        options += '<option value="Select">Select</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            options += '<option value="' + data[i].id + '">' + data[i].value + '</option>';
+                        }
+                        $('#sel-professor , #sel-auxiliar, #sel-auxiliar2').append(options);
+                    }
                 },
                 error: function (error) {
-                    alert('failed');
+                    alert(error.statusText);
                 }
-            })
+            });
+
+            var events = [];
+            var selectedEvent = null;
+            FetchEventAndRenderCalendar();
+
+            function FetchEventAndRenderCalendar() {
+                var events = [];
+                $.ajax({
+                    type: "GET",
+                    url: "/calendario/GetEvents",
+                    success: function (data) {
+                        $.each(data, function (i, v) {
+                            events.push({
+                                idEncontro: v.IdEncontro,
+                                title: v.NoTurma,
+                                turma: v.NoTurma,
+                                idProfessor: v.IdProfessor,
+                                professor: v.NoProfessor,
+                                idAuxiliar: v.IdAuxiliar,
+                                auxiliar: v.NoAuxiliar,
+                                idAuxiliar2: v.IdAuxiliar2,
+                                auxiliar2: v.NoAuxiliar2,
+                                dtIni: moment(v.DtEncontro),
+                                start: moment(v.DtEncontro),
+                                dtFim: v.DtEncontroFim != null ? moment(v.DtEncontroFim) : null,
+                                end: v.DtEncontroFim != null ? moment(v.DtEncontroFim) : null,
+                                color: v.Cor,
+                            });
+                        })
+
+                        GenerateCalender(events);
+                    },
+                    error: function (error) {
+                        alert('Não foi possível carregar o calendario!');
+                    }
+                })
+            }
 
             function GenerateCalender(events) {
                 $('#calender').fullCalendar('destroy');
                 $('#calender').fullCalendar({
-                    contentHeight: 400,
+                    contentHeight: 600,
                     defaultDate: new Date(),
                     timeFormat: 'h(:mm)a',
                     header: {
@@ -67,19 +217,94 @@
                     eventColor: '#378006',
                     events: events,
                     eventClick: function (calEvent, jsEvent, view) {
-                        $('#myModal #eventTitle').text(calEvent.title);
-                        var $description = $('<div/>');
-                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
-                        if (calEvent.end != null) {
-                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                        selectedEvent = calEvent;
+                        $('#myModal #eventTitle').text(calEvent.turma);
+                        $('#professor').val(calEvent.professor);
+                        $('#auxiliar').val(calEvent.auxiliar);
+                        $('#auxiliar2').val(calEvent.auxiliar2);
+                        $('#dataini').val(calEvent.dtIni.format("DD-MM-YYYY HH:mm a"));
+                        var hr = moment(calEvent.dtIni);
+
+                        switch (hr.hour()) {
+                            case 10:
+                                $('#horario').val('10:00');
+                                break;
+                            case 18:
+                                $('#horario').val('18:00');
+                                break;
+                            case 20:
+                                $('#horario').val('20:00');
+                                break;
+                            default:
+                                $('#horario').val('--:--');
+
                         }
-                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
-                        $('#myModal #pDetails').empty().html($description);
+
+                        $('#datafim').val(calEvent.dtFim.format("DD-MM-YYYY HH:mm a"));
 
                         $('#myModal').modal();
+                    },
+                    selectable: true,
+                    select: function (start, end) {
+                        selectedEvent = {
+                            idEncontro: 0,
+                            title: '',
+                            turma: '',
+                            idProfessor: '',
+                            professor: '',
+                            idAuxiliar: '',
+                            auxiliar: '',
+                            idAuxiliar2: '',
+                            auxiliar2: '',
+                            dtIni: start,
+                            start: start,
+                            dtFim: end,
+                            end: end,
+                            color: '',
+                            allDay: false
+                        };
+                        openAddEditForm();
+                        $('#calendar').fullCalendar('unselect');
+                    },
+                    editable: true,
+                    eventDrop: function (event) {
+                        var data = {
+                            idEncontro: event.idEncontro,
+                            turma: event.turma,
+                            professor: event.professor,
+                            auxiliar: event.auxiliar,
+                            auxiliar2: event.auxiliar2,
+                            dtIni: event.dtIni.format('DD/MM/YYYY'),
+                            DtFim: event.DtFim.format('DD/MM/YYYY')
+                        };
+                        SaveEvent(data);
                     }
                 })
             }
+
+            $('#btnEdit').click(function () {
+                //Open modal dialog for edit event
+                openAddEditForm();
+            })
+
+            function openAddEditForm() {
+
+                if (selectedEvent != null) {
+                    $('#idEncontro').val(selectedEvent.idEncontro);
+                    $('#eventSaveTitle').text(selectedEvent.professor);
+                    $('#sel-professor').val(selectedEvent.idProfessor);
+                    $('#sel-auxiliar').val(selectedEvent.idAuxiliar);
+                    $('#sel-auxiliar2').val(selectedEvent.idAuxiliar2);
+                    $('#datainiSave').val(selectedEvent.dtIni.format('DD/MM/YYYY HH:mm A'));
+                    $('#datafimSave').val(selectedEvent.dtFim.format('DD/MM/YYYY HH:mm A'));
+                }
+
+                $('#myModal').modal('hide');
+                $('#myModalSave').modal();
+            }
+
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'DD/MM/YYYY h:mm A' })
         })
     </script>
 }

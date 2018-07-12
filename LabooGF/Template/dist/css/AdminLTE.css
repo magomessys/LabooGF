@@ -4464,6 +4464,7 @@ table.text-center th {
 .modal-warning .modal-body {
   background-color: #f39c12 !important;
 }
+
 .bg-aqua,
 .callout.callout-info,
 .alert-info,
@@ -4974,4 +4975,32 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+    .bg-rosa {
+        background-color: #E91E63 !important;
+    }
+
+    .bg-lilas {
+        background-color: #9C27B0 !important;
+    }
+    .bg-vermelho {
+        background-color: #F44336 !important;
+    }
+    .bg-azul {
+        background-color: #2196F3 !important;
+    }
+    .bg-verde-limao {
+        background-color: #CDDC39 !important;
+    }
+    .bg-verde-floresta {
+        background-color: #4CAF50 !important;
+    }
+    .bg-laranja {
+        background-color: #FF5722 !important;
+    }
+    .bg-amarelo {
+        background-color: #FFEB3B !important;
+    }
+
+
 }
+
