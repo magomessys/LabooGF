@@ -20,7 +20,9 @@ namespace LabooGF.Models
         public string Turma { get; set; } //Enums=>CdTurma
 
         public DateTime DtEncontro { get; set; } //Salvar Data e Hora do encontro.
+        public string DtIni { get; set; }
         public DateTime DtEncontroFim { get; set; }
+        public string DtFim { get; set; }
 
         public string NoTurma =>
             Turma == CdTurma.Rosa ? "Rosa" :

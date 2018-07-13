@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace LabooGF.Controllers
 {
@@ -59,8 +60,8 @@ namespace LabooGF.Controllers
                         v.IdAuxiliar = e.IdAuxiliar;
                         v.IdAuxiliar2 = e.IdAuxiliar2;
                         v.Turma = e.Turma;                        
-                        v.DtEncontro = e.DtEncontro;
-                        v.DtEncontroFim = e.DtEncontroFim;
+                        v.DtEncontro = DateTime.ParseExact(e.DtIni, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        v.DtEncontroFim = DateTime.ParseExact(e.DtFim, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture); 
                     }
                 }
                 else
@@ -69,8 +70,8 @@ namespace LabooGF.Controllers
                                 {   IdProfessor = e.IdProfessor,
                                     IdAuxiliar = e.IdAuxiliar,
                                     IdAuxiliar2 = e.IdAuxiliar2,
-                                    DtEncontro = e.DtEncontro,
-                                    DtEncontroFim = e.DtEncontroFim,
+                                    DtEncontro = DateTime.ParseExact(e.DtIni, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                                    DtEncontroFim = DateTime.ParseExact(e.DtFim, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
                                     Turma = e.Turma
                                 };
 
