@@ -17,6 +17,13 @@ namespace LabooGF.Models
             set;
         }
 
+        public DbSet<User> Users
+        {
+            get;
+            set;
+        }
+
+
         public DbSet<Aluno> Alunos
         {
             get;

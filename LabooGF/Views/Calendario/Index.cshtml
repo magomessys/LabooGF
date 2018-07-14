@@ -25,6 +25,7 @@
                 <h4 class="modal-title"><span id="eventTitle"></span></h4>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="idEncontromodal" value="0" />
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Data</label>
@@ -39,7 +40,7 @@
                         <label>Horário</label>
                         <input id="horario" type="text" class="form-control input-sm" disabled>
                     </div>
-                </div>  
+                </div>
                 <div class="form-group">
                     <label>Professor</label>
                     <input id="professor" type="text" class="form-control input-sm" disabled>
@@ -54,16 +55,19 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btnDelete" class="btn btn-default btn-sm pull-right">
-                    <span class="glyphicon glyphicon-trash"></span> Excluir
-                </button>
-                <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
-                    <span class="glyphicon glyphicon-pencil"></span> Editar
-                </button>
-                <button type="button" class="btn btn-default btn-sm pull-right" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-remove"></span> Fechar
-                </button>
-            </div>
+                @if (Session["UserID"] != null && Session["UserPermissao"].ToString() == "ADM")
+                {
+                    <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                        <span class="glyphicon glyphicon-trash"></span> Excluir
+                    </button>
+                    <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
+                        <span class="glyphicon glyphicon-pencil"></span> Editar
+                    </button>
+                    }
+                    <button type="button" class="btn btn-default btn-sm pull-right" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span> Fechar
+                    </button>
+                </div>
         </div>
     </div>
 </div>
@@ -80,14 +84,20 @@
                     <input type="hidden" id="idEncontro" value="0" />
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Data</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input id="datainiSave" type="text" class="form-control input-sm datemask" required>
-                            </div>
+                            <label>Horário</label>
+                            <select id="sel-turma" class="form-control select2" required>
+                                <option value="-">(Selecione uma opção abaixo)</option>
+                                <option value="ROSA">Rosa</option>
+                                <option value="LILAS">Lilás</option>
+                                <option value="VERMELHO">Vermelho</option>
+                                <option value="AZUL">Azul</option>
+                                <option value="VERDE-LIMAO">Verde Limão</option>
+                                <option value="VERDE-FLORESTA">Verde Floresta</option>
+                                <option value="LARANJA">Laranja</option>
+                                <option value="AMARELO">Amarelo</option>
+                            </select>
                         </div>
+
                         <div class="form-group col-md-6">
                             <label>Horário</label>
                             <select id="sel-horarioSave" class="form-control select2" required>
@@ -98,7 +108,15 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label>Data</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input id="datainiSave" type="text" class="form-control input-sm datemask" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>Professor</label>
                         <select id="sel-professor" class="form-control select2" required></select>
@@ -152,12 +170,14 @@
                 error: function (error) {
                     alert(error.statusText);
                 }
+
             });
+
 
             var events = [];
             var selectedEvent = null;
             FetchEventAndRenderCalendar();
-
+            
             function FetchEventAndRenderCalendar() {
                 var events = [];
                 $.ajax({
@@ -169,6 +189,7 @@
                                 idEncontro: v.IdEncontro,
                                 title: v.NoTurma,
                                 turma: v.NoTurma,
+                                cdTurma: v.Turma,
                                 idProfessor: v.IdProfessor,
                                 professor: v.NoProfessor,
                                 idAuxiliar: v.IdAuxiliar,
@@ -208,6 +229,7 @@
                     eventClick: function (calEvent, jsEvent, view) {
                         selectedEvent = calEvent;
                         $('#myModal #eventTitle').text(calEvent.turma);
+                        $('#idEncontromodal').val(calEvent.idEncontro);
                         $('#professor').val(calEvent.professor);
                         $('#auxiliar').val(calEvent.auxiliar);
                         $('#auxiliar2').val(calEvent.auxiliar2);
@@ -252,8 +274,11 @@
                             color: '',
                             allDay: false
                         };
-                        openAddEditForm();
-                        $('#calendar').fullCalendar('unselect');
+                        if (Session["UserPermissao"].ToString() == "ADM") {
+
+                            openAddEditForm();
+                            $('#calendar').fullCalendar('unselect');
+                        }
                     },
                     editable: true,
                     eventDrop: function (event) {
@@ -280,7 +305,8 @@
 
                 if (selectedEvent != null) {
                     $('#idEncontro').val(selectedEvent.idEncontro);
-                    $('#eventSaveTitle').text(selectedEvent.professor);
+                    $('#eventSaveTitle').text(selectedEvent.turma);
+                    $('#sel-turma').val(selectedEvent.cdTurma);
                     $('#sel-professor').val(selectedEvent.idProfessor);
                     $('#sel-auxiliar').val(selectedEvent.idAuxiliar);
                     $('#sel-auxiliar2').val(selectedEvent.idAuxiliar2);
@@ -310,7 +336,7 @@
                 var data = {
 
                     IdEncontro: $('#idEncontro').val(),
-                    Turma: 'ROSA',
+                    Turma: $('#sel-turma').val(),
                     IdProfessor: $('#sel-professor').val(),
                     IdAuxiliar: $('#sel-auxiliar').val(),
                     IdAuxiliar2: $('#sel-auxiliar2').val(),
@@ -321,6 +347,25 @@
                 SaveEvent(data);
                 // call function for submit data to the server 
             })
+            $('#btnDelete').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: '/Calendario/DeleteEvent',
+                        data: { 'eventID': $('#idEncontromodal').val() },
+                        success: function (data) {
+                            if (data.status) {
+                                //Refresh the calender
+                                FetchEventAndRenderCalendar();
+                                $('#myModal').modal('hide');
+                            }
+                        },
+                        error: function () {
+                            alert('Failed');
+                        }
+                    })
+            })
+
+
 
             function SaveEvent(data) {
                 $.ajax({
@@ -338,7 +383,9 @@
                         alert('Failed');
                     }
                 })
-            }
+            }       
+
+
         })
     </script>
 }

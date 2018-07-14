@@ -170,31 +170,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806142354570_MapeamentoOneToOne.cs" />
-    <Compile Include="Migrations\201806142354570_MapeamentoOneToOne.Designer.cs">
+    <Compile Include="Migrations\201807140137127_user.cs" />
+    <Compile Include="Migrations\201807140137127_user.Designer.cs">
+      <DependentUpon>201807140137127_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Migrations\201806142354570_MapeamentoOneToOne.cs" />
+    <Compile Include="Models\Migrations\201806142354570_MapeamentoOneToOne.Designer.cs">
       <DependentUpon>201806142354570_MapeamentoOneToOne.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806230001228_AlterDataAnnotations.cs" />
-    <Compile Include="Migrations\201806230001228_AlterDataAnnotations.Designer.cs">
+    <Compile Include="Models\Migrations\201806230001228_AlterDataAnnotations.cs" />
+    <Compile Include="Models\Migrations\201806230001228_AlterDataAnnotations.Designer.cs">
       <DependentUpon>201806230001228_AlterDataAnnotations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806261112298_addEntityVoluntario.cs" />
-    <Compile Include="Migrations\201806261112298_addEntityVoluntario.Designer.cs">
+    <Compile Include="Models\Migrations\201806261112298_addEntityVoluntario.cs" />
+    <Compile Include="Models\Migrations\201806261112298_addEntityVoluntario.Designer.cs">
       <DependentUpon>201806261112298_addEntityVoluntario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806280120148_encontrosCalendario.cs" />
-    <Compile Include="Migrations\201806280120148_encontrosCalendario.Designer.cs">
+    <Compile Include="Models\Migrations\201806280120148_encontrosCalendario.cs" />
+    <Compile Include="Models\Migrations\201806280120148_encontrosCalendario.Designer.cs">
       <DependentUpon>201806280120148_encontrosCalendario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806291238344_dtfim.cs" />
-    <Compile Include="Migrations\201806291238344_dtfim.Designer.cs">
+    <Compile Include="Models\Migrations\201806291238344_dtfim.cs" />
+    <Compile Include="Models\Migrations\201806291238344_dtfim.Designer.cs">
       <DependentUpon>201806291238344_dtfim.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806291506052_remove.cs" />
-    <Compile Include="Migrations\201806291506052_remove.Designer.cs">
+    <Compile Include="Models\Migrations\201806291506052_remove.cs" />
+    <Compile Include="Models\Migrations\201806291506052_remove.Designer.cs">
       <DependentUpon>201806291506052_remove.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
     <Compile Include="Models\DTO\ComboDTO.cs" />
     <Compile Include="Models\DTO\EncontroDTO.cs" />
@@ -203,6 +207,7 @@
     <Compile Include="Models\Encontro.cs" />
     <Compile Include="Models\GFContext.cs" />
     <Compile Include="Models\Responsavel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Voluntario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2751,10 +2756,11 @@
     <Content Include="Template\bower_components\bootstrap-daterangepicker\example\browserify\README.md" />
     <Content Include="Template\bower_components\bootstrap-daterangepicker\package.json" />
     <Content Include="Template\bower_components\bootstrap-daterangepicker\README.md" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Services\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -2770,22 +2776,25 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806142354570_MapeamentoOneToOne.resx">
+    <EmbeddedResource Include="Migrations\201807140137127_user.resx">
+      <DependentUpon>201807140137127_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Migrations\201806142354570_MapeamentoOneToOne.resx">
       <DependentUpon>201806142354570_MapeamentoOneToOne.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806230001228_AlterDataAnnotations.resx">
+    <EmbeddedResource Include="Models\Migrations\201806230001228_AlterDataAnnotations.resx">
       <DependentUpon>201806230001228_AlterDataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806261112298_addEntityVoluntario.resx">
+    <EmbeddedResource Include="Models\Migrations\201806261112298_addEntityVoluntario.resx">
       <DependentUpon>201806261112298_addEntityVoluntario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806280120148_encontrosCalendario.resx">
+    <EmbeddedResource Include="Models\Migrations\201806280120148_encontrosCalendario.resx">
       <DependentUpon>201806280120148_encontrosCalendario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806291238344_dtfim.resx">
+    <EmbeddedResource Include="Models\Migrations\201806291238344_dtfim.resx">
       <DependentUpon>201806291238344_dtfim.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806291506052_remove.resx">
+    <EmbeddedResource Include="Models\Migrations\201806291506052_remove.resx">
       <DependentUpon>201806291506052_remove.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
